@@ -6,7 +6,6 @@ public class Lines extends TElement {
 
     String name;
     ArrayList<String> lines = new ArrayList<String>();
-    int page = 0;
 
     public Lines(String name) {
         this.name = name;

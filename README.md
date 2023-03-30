@@ -9,7 +9,7 @@ classDiagram
     MasterControl --> TElement
     TElement <|.. Lines
     TElement -->"observes" IChangeObserver
-    IChangeObserver <|.. CircularShift
+    IChangeObserver <|.. KeyWordFinder
     IChangeObserver <|.. Alphabetizer
     MasterControl --> IChangeObserver
     
@@ -18,8 +18,8 @@ classDiagram
       +outputLines
       +inputLines
       +keywordLines
+      +organizedLines
       +Main()
-      +chooseInputType(Input input)
     }
 
     class TElement{
@@ -35,7 +35,6 @@ classDiagram
     class KeyWordFinder{
         +notifyListener(Lines changedLines) void
         +wordFinder(Lines imputLines)void
-        +getIndex(String word)int
     }   
 
     class Alphabetizer{
@@ -48,7 +47,6 @@ classDiagram
     class Lines{
         -String name
         -ArrayList<String> lines
-        -int page
         +storageLines(String line) void
         +clearLines()void
         +getLines()List<String>
@@ -56,10 +54,9 @@ classDiagram
     }
 
     class Input{
-        +readPDF (Lines inputLines, String rutaArchivo) void
-        +readText (Lines inputLines, String rutaArchivo) void
-        +readLines (Lines inputLines) void
-        +textStripper (PDDocument doc, int i) String
+        +readLines (Lines linesToChange) void
+        +readDirectory(Lines linesToChange) void
+        +listFiles(String directoryName, File[] files, Lines linesToChange)void
     }
 
     class Output{
